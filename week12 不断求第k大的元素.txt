@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+using namespace std;
+int main()
+{
+	int m, n, k, current; cin >> m >> n >> k;
+	priority_queue<int, vector<int>, greater<int>> minHeap;
+	for (int i = 0; i < k; i++)
+	{
+		cin >> current;
+		minHeap.push(current);
+	}
+	for (int i = k; i < m; i++)
+	{
+		cin >> current;
+		minHeap.push(current);
+		minHeap.pop();
+	}
+	long result = minHeap.top();
+	for (int i = 0; i < n; i++)
+	{
+		cin >> current;
+		minHeap.push(current);
+		minHeap.pop();
+		result += minHeap.top();
+	}
+	cout << result;
+	return 0;
+}
